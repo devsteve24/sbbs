@@ -18,7 +18,7 @@
             color: #333;
         }
         #app {
-            width: 90%;
+            width: 95%;
             max-width: 600px;
             background: #ffffff;
             border-radius: 12px;
@@ -26,7 +26,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 100%; /* Ensures proper height for sticky controls */
+            height: 95%; /* Ensures proper height for sticky controls */
         }
         .slide {
             display: none;
@@ -35,7 +35,7 @@
             transition: opacity 0.3s ease-in-out;
             overflow-y: auto;
             flex: 1; /* Allows the slide content to take up available space */
-        }
+        }     
         .slide.active {
             display: block;
             animation: fadeIn 0.5s ease-in-out;
@@ -550,10 +550,10 @@
     <script>
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
-
+    
         const prevButton = document.getElementById('prev');
         const nextButton = document.getElementById('next');
-
+    
         // Load answers into textareas from localStorage
         function loadAnswers() {
             const savedAnswers = JSON.parse(localStorage.getItem('answers')) || {};
@@ -564,7 +564,7 @@
                 }
             });
         }
-
+    
         // Save answers to localStorage whenever a user types
         document.addEventListener('input', (event) => {
             if (event.target.tagName === 'TEXTAREA') {
@@ -574,7 +574,7 @@
                 localStorage.setItem('answers', JSON.stringify(savedAnswers));
             }
         });
-
+    
         // Populate answers on the final slide
         function populateAnswers() {
             const savedAnswers = JSON.parse(localStorage.getItem('answers')) || {};
@@ -583,37 +583,52 @@
                 answerDiv.textContent = savedAnswers[questionId] || "No answer provided.";
             });
         }
-
-        // Handle navigation
+    
+        // Scroll to the top of the active slide
+        function scrollToTop() {
+            const activeSlide = slides[currentSlide];
+            activeSlide.scrollTop = 0;
+        }
+    
+        // Handle navigation to the next slide
         nextButton.addEventListener('click', () => {
             if (currentSlide < slides.length - 1) {
                 slides[currentSlide].classList.remove('active');
                 currentSlide++;
                 slides[currentSlide].classList.add('active');
-
+                scrollToTop();
+    
                 if (currentSlide === slides.length - 1) {
                     populateAnswers();
                 }
             }
             updateButtons();
         });
-
+    
+        // Handle navigation to the previous slide
         prevButton.addEventListener('click', () => {
             if (currentSlide > 0) {
                 slides[currentSlide].classList.remove('active');
                 currentSlide--;
                 slides[currentSlide].classList.add('active');
+                scrollToTop();
             }
             updateButtons();
         });
-
+    
+        // Update button states (enable/disable)
         function updateButtons() {
             prevButton.disabled = currentSlide === 0;
             nextButton.disabled = currentSlide === slides.length - 1;
         }
-
-        // Load answers on page load
-        window.addEventListener('DOMContentLoaded', loadAnswers);
+    
+        // Ensure page always starts at the top on load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadAnswers();
+            slides[currentSlide].classList.add('active');
+            scrollToTop();
+        });
     </script>
+    
 </body>
 </html>
