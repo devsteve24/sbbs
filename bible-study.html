@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Study - Book of Jude</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f0f4f8, #d9e9f7);
+            color: #333;
+        }
+        #app {
+            width: 90%;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Ensures proper height for sticky controls */
+        }
+        .slide {
+            display: none;
+            padding: 20px;
+            text-align: center;
+            transition: opacity 0.3s ease-in-out;
+            overflow-y: auto;
+            flex: 1; /* Allows the slide content to take up available space */
+        }
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide.first-slide {
+            padding-top: 200px; /* Adjust padding to your liking */
+            text-align: center;
+        }  
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        h2, h3, h4 {
+            color: #0077cc;
+            margin-bottom: 15px;
+        }
+        p, ul {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+        ul {
+            padding-left: 20px;
+            text-align: left;
+        }
+        .verses-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #fef7e6;
+            border: 1px solid #ffcc66;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.1rem;
+            text-align: left;
+            color: #555;
+        }
+        .content-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f0fcf4;
+            border: 1px solid #c0eac8;
+            text-align: left;
+        }
+        .content-box h4 {
+            color: #2f855a;
+        }
+        .discussion-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #eef6ff;
+            border: 1px solid #0077cc;
+            text-align: left;
+        }
+        .readonly-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #eef6ff;
+            border: 1px solid #0077cc;
+            text-align: left;
+        }
+        .readonly-box h5 {
+            color: #0077cc;
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: none;
+            min-height: 80px;
+            box-sizing: border-box;
+        }
+        .answer {
+            font-style: italic;
+            color: #555;
+            margin: 10px 0;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            background: #f7f9fc;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            position: sticky; /* Ensures the controls stick to the bottom of the screen */
+            bottom: 0;
+            z-index: 10;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        button:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        #prev {
+            background: #ff6b6b;
+            color: white;
+        }
+        #prev:hover:not(:disabled) {
+            background: #ff3b3b;
+        }
+        #next {
+            background: #0077cc;
+            color: white;
+        }
+        #next:hover:not(:disabled) {
+            background: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="slide active first-slide">
+            <h2>Welcome to the Book of Jude</h2>
+            <p>Explore Jude 1:17-25 with insights and questions to reflect upon.</p>
+        </div>
+        <div class="slide">
+            <h2>Jude 1:17–25</h2>
+            <div class="verses-box">
+                <p>17 But you, beloved, remember the words which were spoken before by the apostles of our Lord Jesus Christ:</p>
+                <p>18 how they told you that there would be mockers in the last time who would walk according to their own ungodly lusts.</p>
+                <p>19 These are sensual persons, who cause divisions, not having the Spirit.</p>
+                <p>20 But you, beloved, building yourselves up on your most holy faith, praying in the Holy Spirit,</p>
+                <p>21 keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.</p>
+                <p>22 And on some have compassion, making a distinction;</p>
+                <p>23 but others save with fear, pulling them out of the fire, hating even the garment defiled by the flesh.</p>
+                <p>24 Now to Him who is able to keep you from stumbling, And to present you faultless Before the presence of His glory with exceeding joy,</p>
+                <p>25 To God our Savior, Who alone is wise, Be glory and majesty, Dominion and power, Both now and forever. Amen.</p>
+            </div>
+        </div>        
+        <div class="slide">
+            <h3>Jude 17–19 – Remember Apostolic Warnings</h3>
+            <div class="verses-box">
+                <p>17 But you, beloved, remember the words which were spoken before by the apostles of our Lord Jesus Christ:</p>
+                <p>18 how they told you that there would be mockers in the last time who would walk according to their own ungodly lusts.</p>
+                <p>19 These are sensual persons, who cause divisions, not having the Spirit.</p>
+            </div>
+            <div class="content-box">
+                <h4>Key Verse</h4>
+                <p>“Remember the words spoken by the apostles.”</p>
+                <h4>Main Points</h4>
+                <ul>
+                    <li>Mockers were predicted, following ungodly desires.</li>
+                    <li>Characteristics: self-centered, divisive, devoid of the Spirit.</li>
+                </ul>
+                <h4>Application</h4>
+                <p>Be vigilant and grounded in Scripture.</p>
+            </div>
+            <div class="discussion-box">
+                <h4>Discussion Questions</h4>
+                <h5>Message Questions:</h5>
+                <ul>
+                    <li>
+                        Why did the apostles warn about mockers?
+                        <textarea id="question1"></textarea>
+                    </li>
+                    <li>
+                        What traits of mockers stand out most?
+                        <textarea id="question2"></textarea>
+                    </li>
+                </ul>
+                <h5>Personal Questions:</h5>
+                <ul>
+                    <li>
+                        How do you respond to mockery or ungodly influences?
+                        <textarea id="question3"></textarea>
+                    </li>
+                    <li>
+                        How can these warnings strengthen your faith?
+                        <textarea id="question4"></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide">
+            <h3>Jude 20–21 – Build and Keep Your Faith</h3>
+            <div class="verses-box">
+                <p>20 But you, beloved, building yourselves up on your most holy faith, praying in the Holy Spirit,</p>
+                <p>21 keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.</p>
+            </div>
+            <div class="content-box">
+                <h4>Key Verses</h4>
+                <p>“Build yourselves up… praying in the Holy Spirit.”</p>
+                <h4>Main Points</h4>
+                <ul>
+                    <li>Build faith through Scripture, prayer, and fellowship.</li>
+                    <li>Pray in alignment with the Holy Spirit.</li>
+                    <li>Keep yourselves in God’s love through obedience.</li>
+                    <li>Look for Christ’s mercy and eternal hope.</li>
+                </ul>
+                <h4>Application</h4>
+                <p>Actively grow in faith and live with eternity in mind.</p>
+            </div>
+            <div class="discussion-box">
+                <h4>Discussion Questions</h4>
+                <h5>Message Questions:</h5>
+                <ul>
+                    <li>
+                        What does it mean to build your faith?
+                        <textarea id="question5"></textarea>
+                    </li>
+                    <li>
+                        How does praying in the Spirit help?
+                        <textarea id="question6"></textarea>
+                    </li>
+                </ul>
+                <h5>Personal Questions:</h5>
+                <ul>
+                    <li>
+                        What can you do this week to grow in faith?
+                        <textarea id="question7"></textarea>
+                    </li>
+                    <li>
+                        How do you stay in God’s love during challenges?
+                        <textarea id="question8"></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide">
+            <h3>Jude 22–23 – Reach Out to Others</h3>
+            <div class="verses-box">
+                <p>22 And on some have compassion, making a distinction;</p>
+                <p>23 but others save with fear, pulling them out of the fire, hating even the garment defiled by the flesh.</p>
+            </div>
+            <div class="content-box">
+                <h4>Key Verses</h4>
+                <p>“Have compassion… save others, pulling them out of the fire.”</p>
+                <h4>Main Points</h4>
+                <ul>
+                    <li>Show compassion to those doubting.</li>
+                    <li>Rescue others urgently from sin.</li>
+                    <li>Avoid being influenced by their sin.</li>
+                </ul>
+                <h4>Application</h4>
+                <p>Balance compassion with caution while helping others.</p>
+            </div>
+            <div class="discussion-box">
+                <h4>Discussion Questions</h4>
+                <h5>Message Questions:</h5>
+                <ul>
+                    <li>
+                        Why does Jude urge compassion for some and urgency for others?
+                        <textarea id="question9"></textarea>
+                    </li>
+                    <li>
+                        What does “snatching from the fire” mean?
+                        <textarea id="question10"></textarea>
+                    </li>
+                </ul>
+                <h5>Personal Questions:</h5>
+                <ul>
+                    <li>
+                        Who needs your compassion or help this week?
+                        <textarea id="question11"></textarea>
+                    </li>
+                    <li>
+                        How can you protect yourself while helping others in sin?
+                        <textarea id="question12"></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide">
+            <h3>Jude 24–25 – Trust in God’s Power</h3>
+            <div class="verses-box">
+                <p>24 Now to Him who is able to keep you from stumbling,</p>
+                <p>And to present you faultless Before the presence of His glory with exceeding joy,</p>
+                <p>25 To God our Savior, Who alone is wise, Be glory and majesty, Dominion and power, Both now and forever. Amen.</p>
+            </div>
+            <div class="content-box">
+                <h4>Key Verses</h4>
+                <p>“Now to Him who is able to keep you from stumbling.”</p>
+                <h4>Main Points</h4>
+                <ul>
+                    <li>God sustains and preserves believers.</li>
+                    <li>Believers are presented faultless through Christ.</li>
+                    <li>All glory, majesty, and dominion belong to God.</li>
+                </ul>
+                <h4>Application</h4>
+                <p>Rest in God’s ability to help you finish strong and praise Him.</p>
+            </div>
+            <div class="discussion-box">
+                <h4>Discussion Questions</h4>
+                <h5>Message Questions:</h5>
+                <ul>
+                    <li>
+                        What does it mean that God keeps us?
+                        <textarea id="question13"></textarea>
+                    </li>
+                    <li>
+                        How does Jude’s doxology reflect God’s glory?
+                        <textarea id="question14"></textarea>
+                    </li>
+                </ul>
+                <h5>Personal Questions:</h5>
+                <ul>
+                    <li>
+                        When has God helped you persevere?
+                        <textarea id="question15"></textarea>
+                    </li>
+                    <li>
+                        Where do you need to trust God more today?
+                        <textarea id="question16"></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide">
+            <h3>Summary and Application</h3>
+            <div class="content-box">
+                <h4>Summary</h4>
+                <ul>
+                    <li>Jude urges us to reject false teachings, grow in faith, help others, and trust God.</li>
+                    <li>Key actions: Stay vigilant, persevere, and encourage others.</li>
+                </ul>
+                <h4>Application</h4>
+                <ul>
+                    <li>Live your faith daily through Scripture, prayer, and action.</li>
+                    <li>Support others with compassion and urgency in their spiritual walk.</li>
+                </ul>
+            </div>
+            <div class="discussion-box">
+                <h4>Conclusion</h4>
+                <h5>Message Questions:</h5>
+                <ul>
+                    <li>
+                        Why is contending for faith essential today?
+                        <textarea id="question17"></textarea>
+                    </li>
+                    <li>
+                        How does trusting God’s power give hope?
+                        <textarea id="question18"></textarea>
+                    </li>
+                </ul>
+                <h5>Personal Questions:</h5>
+                <ul>
+                    <li>
+                        What step will you take to strengthen your faith this week?
+                        <textarea id="question19"></textarea>
+                    </li>
+                    <li>
+                        Who can you encourage or guide spiritually?
+                        <textarea id="question20"></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slide">
+            <h2>All Questions & Answers</h2>
+            <hr>
+        
+            <!-- Jude 17–19 – Remember Apostolic Warnings -->
+            <div class="readonly-box">
+                <h5>Jude 17–19 – Remember Apostolic Warnings</h5>
+                <p><strong>Message Questions:</strong></p>
+                <ul>
+                    <li>
+                        Why did the apostles warn about mockers?
+                        <div class="answer" id="answer1"></div>
+                    </li>
+                    <li>
+                        What traits of mockers stand out most?
+                        <div class="answer" id="answer2"></div>
+                    </li>
+                </ul>
+                <p><strong>Personal Questions:</strong></p>
+                <ul>
+                    <li>
+                        How do you respond to mockery or ungodly influences?
+                        <div class="answer" id="answer3"></div>
+                    </li>
+                    <li>
+                        How can these warnings strengthen your faith?
+                        <div class="answer" id="answer4"></div>
+                    </li>
+                </ul>
+            </div>
+        
+            <!-- Jude 20–21 – Build and Keep Your Faith -->
+            <div class="readonly-box">
+                <h5>Jude 20–21 – Build and Keep Your Faith</h5>
+                <p><strong>Message Questions:</strong></p>
+                <ul>
+                    <li>
+                        What does it mean to build your faith?
+                        <div class="answer" id="answer5"></div>
+                    </li>
+                    <li>
+                        How does praying in the Spirit help?
+                        <div class="answer" id="answer6"></div>
+                    </li>
+                </ul>
+                <p><strong>Personal Questions:</strong></p>
+                <ul>
+                    <li>
+                        What can you do this week to grow in faith?
+                        <div class="answer" id="answer7"></div>
+                    </li>
+                    <li>
+                        How do you stay in God’s love during challenges?
+                        <div class="answer" id="answer8"></div>
+                    </li>
+                </ul>
+            </div>
+        
+            <!-- Jude 22–23 – Reach Out to Others -->
+            <div class="readonly-box">
+                <h5>Jude 22–23 – Reach Out to Others</h5>
+                <p><strong>Message Questions:</strong></p>
+                <ul>
+                    <li>
+                        Why does Jude urge compassion for some and urgency for others?
+                        <div class="answer" id="answer9"></div>
+                    </li>
+                    <li>
+                        What does “snatching from the fire” mean?
+                        <div class="answer" id="answer10"></div>
+                    </li>
+                </ul>
+                <p><strong>Personal Questions:</strong></p>
+                <ul>
+                    <li>
+                        Who needs your compassion or help this week?
+                        <div class="answer" id="answer11"></div>
+                    </li>
+                    <li>
+                        How can you protect yourself while helping others in sin?
+                        <div class="answer" id="answer12"></div>
+                    </li>
+                </ul>
+            </div>
+        
+            <!-- Jude 24–25 – Trust in God’s Power -->
+            <div class="readonly-box">
+                <h5>Jude 24–25 – Trust in God’s Power</h5>
+                <p><strong>Message Questions:</strong></p>
+                <ul>
+                    <li>
+                        What does it mean that God keeps us?
+                        <div class="answer" id="answer13"></div>
+                    </li>
+                    <li>
+                        How does Jude’s doxology reflect God’s glory?
+                        <div class="answer" id="answer14"></div>
+                    </li>
+                </ul>
+                <p><strong>Personal Questions:</strong></p>
+                <ul>
+                    <li>
+                        When has God helped you persevere?
+                        <div class="answer" id="answer15"></div>
+                    </li>
+                    <li>
+                        Where do you need to trust God more today?
+                        <div class="answer" id="answer16"></div>
+                    </li>
+                </ul>
+            </div>
+        
+            <!-- Summary and Application -->
+            <div class="readonly-box">
+                <h5>Summary and Application</h5>
+                <p><strong>Message Questions:</strong></p>
+                <ul>
+                    <li>
+                        Why is contending for faith essential today?
+                        <div class="answer" id="answer17"></div>
+                    </li>
+                    <li>
+                        How does trusting God’s power give hope?
+                        <div class="answer" id="answer18"></div>
+                    </li>
+                </ul>
+                <p><strong>Personal Questions:</strong></p>
+                <ul>
+                    <li>
+                        What step will you take to strengthen your faith this week?
+                        <div class="answer" id="answer19"></div>
+                    </li>
+                    <li>
+                        Who can you encourage or guide spiritually?
+                        <div class="answer" id="answer20"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="prev" disabled>&larr; Previous</button>
+            <button id="next">Next &rarr;</button>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+
+        // Load answers into textareas from localStorage
+        function loadAnswers() {
+            const savedAnswers = JSON.parse(localStorage.getItem('answers')) || {};
+            document.querySelectorAll('textarea').forEach(textarea => {
+                const id = textarea.id;
+                if (savedAnswers[id]) {
+                    textarea.value = savedAnswers[id];
+                }
+            });
+        }
+
+        // Save answers to localStorage whenever a user types
+        document.addEventListener('input', (event) => {
+            if (event.target.tagName === 'TEXTAREA') {
+                const textarea = event.target;
+                const savedAnswers = JSON.parse(localStorage.getItem('answers')) || {};
+                savedAnswers[textarea.id] = textarea.value;
+                localStorage.setItem('answers', JSON.stringify(savedAnswers));
+            }
+        });
+
+        // Populate answers on the final slide
+        function populateAnswers() {
+            const savedAnswers = JSON.parse(localStorage.getItem('answers')) || {};
+            document.querySelectorAll('.answer').forEach(answerDiv => {
+                const questionId = answerDiv.id.replace('answer', 'question');
+                answerDiv.textContent = savedAnswers[questionId] || "No answer provided.";
+            });
+        }
+
+        // Handle navigation
+        nextButton.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide++;
+                slides[currentSlide].classList.add('active');
+
+                if (currentSlide === slides.length - 1) {
+                    populateAnswers();
+                }
+            }
+            updateButtons();
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide--;
+                slides[currentSlide].classList.add('active');
+            }
+            updateButtons();
+        });
+
+        function updateButtons() {
+            prevButton.disabled = currentSlide === 0;
+            nextButton.disabled = currentSlide === slides.length - 1;
+        }
+
+        // Load answers on page load
+        window.addEventListener('DOMContentLoaded', loadAnswers);
+    </script>
+</body>
+</html>
