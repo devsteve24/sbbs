@@ -7,6 +7,7 @@
     <title>Bible Study - Book of Jude</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+    
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -14,38 +15,44 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Ensure it fills the entire screen */
             background: linear-gradient(135deg, #f0f4f8, #d9e9f7);
             color: #333;
         }
+    
         #app {
-            width: 95%;
-            max-width: 600px;
+            width: 100%;
+            max-width: 100%; /* Take up the full width */
+            height: 100vh; /* Always fill the viewport height */
             background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 0; /* No rounding for a full-screen feel */
+            box-shadow: none; /* Optional: Remove shadow for full-screen look */
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            height: 95%;
-            position: relative;
+            justify-content: space-between; /* Space the content and buttons evenly */
         }
+    
         .slide {
             display: none;
-            padding: 20px 20px 80px; /* Add extra bottom padding for scrollable content */
+            padding: 20px;
             text-align: center;
             transition: opacity 0.3s ease-in-out;
             overflow-y: auto;
             flex: 1;
         }
+    
         .slide.active {
             display: block;
             animation: fadeIn 0.5s ease-in-out;
         }
+    
         .slide.first-slide {
-            padding-top: 100px; /* Reduced top padding */
+            padding: 40px 20px; /* Equal spacing for the top and bottom */
             text-align: center;
+            flex: 1;
         }
+    
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -54,19 +61,23 @@
                 opacity: 1;
             }
         }
+    
         h2, h3, h4 {
             color: #0077cc;
             margin-bottom: 15px;
         }
+    
         p, ul {
             font-size: 1rem;
             line-height: 1.6;
             margin: 10px 0;
         }
+    
         ul {
             padding-left: 20px;
             text-align: left;
         }
+    
         .verses-box {
             margin-bottom: 20px;
             padding: 15px;
@@ -78,6 +89,7 @@
             text-align: left;
             color: #555;
         }
+    
         .content-box {
             margin-top: 20px;
             padding: 15px;
@@ -86,9 +98,11 @@
             border: 1px solid #c0eac8;
             text-align: left;
         }
+    
         .content-box h4 {
             color: #2f855a;
         }
+    
         .discussion-box {
             margin-top: 20px;
             padding: 15px;
@@ -97,6 +111,7 @@
             border: 1px solid #0077cc;
             text-align: left;
         }
+    
         .readonly-box {
             margin-top: 20px;
             padding: 15px;
@@ -105,10 +120,12 @@
             border: 1px solid #0077cc;
             text-align: left;
         }
+    
         .readonly-box h5 {
             color: #0077cc;
             font-weight: bold;
         }
+    
         textarea {
             width: 100%;
             margin-top: 10px;
@@ -120,27 +137,24 @@
             min-height: 80px;
             box-sizing: border-box;
         }
+    
         .answer {
             font-style: italic;
             color: #555;
             margin: 10px 0;
         }
+    
         .controls {
             display: flex;
             justify-content: space-between;
             background: #f7f9fc;
             padding: 15px;
             border-top: 1px solid #ddd;
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 95%;
             width: 100%;
+            position: relative;
             box-sizing: border-box;
-            border-radius: 0 0 12px 12px;
-            z-index: 10;
         }
+    
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -149,27 +163,47 @@
             cursor: pointer;
             transition: background 0.3s ease-in-out;
         }
+    
         button:disabled {
             background: #ccc;
             color: #666;
             cursor: not-allowed;
             opacity: 0.6;
         }
+    
         #prev {
             background: #ff6b6b;
             color: white;
         }
+    
         #prev:hover:not(:disabled) {
             background: #ff3b3b;
         }
+    
         #next {
             background: #0077cc;
             color: white;
         }
+    
         #next:hover:not(:disabled) {
             background: #005fa3;
         }
-    </style>              
+    
+        /* Media Query for Small Screens (Mobile) */
+        @media (max-width: 768px) {
+            .slide.first-slide {
+                padding: 20px; /* Reduce padding for mobile */
+            }
+    
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+    
+    
+                 
 </head>
 <body>
     <div id="app">
