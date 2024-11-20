@@ -7,7 +7,7 @@
     <title>Bible Study - Book of Jude</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
-    
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -19,7 +19,7 @@
             background: linear-gradient(135deg, #f0f4f8, #d9e9f7);
             color: #333;
         }
-    
+
         #app {
             width: 100%;
             max-width: 100%; /* Take up the full width */
@@ -32,7 +32,7 @@
             flex-direction: column;
             justify-content: space-between; /* Space the content and buttons evenly */
         }
-    
+
         .slide {
             display: none;
             padding: 20px;
@@ -41,18 +41,18 @@
             overflow-y: auto;
             flex: 1;
         }
-    
+
         .slide.active {
             display: block;
             animation: fadeIn 0.5s ease-in-out;
         }
-    
+
         .slide.first-slide {
             padding: 40px 20px; /* Equal spacing for the top and bottom */
             text-align: center;
             flex: 1;
         }
-    
+
         .slide-image {
             max-width: 70%; /* Adjust image size */
             max-height: 70%; /* Adjust max height */
@@ -73,10 +73,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 200, 0.5) 20%, transparent 70%);
-            opacity: 0.5;
+            background: radial-gradient(circle at center, rgba(255, 255, 200, 0.7) 30%, transparent 80%);
+            opacity: 0.6;
             pointer-events: none; /* Prevent blocking interaction with image */
-            animation: glowMove 4s infinite alternate; /* Glowing animation */
+            animation: glowMove 6s infinite alternate ease-in-out; /* Adjusted animation timing */
             z-index: 2; /* Ensure it's above the image */
             border-radius: 12px; /* Match the image's rounded corners */
         }
@@ -84,19 +84,20 @@
         /* Animation to move the glowing light diagonally */
         @keyframes glowMove {
             0% {
-                transform: translate(-50px, -50px) scale(1);
-                opacity: 0.3;
+                transform: translate(-40px, -40px) scale(1);
+                opacity: 0.4;
             }
             50% {
-                transform: translate(0, 0) scale(1.2);
-                opacity: 0.6;
+                transform: translate(0, 0) scale(1.1);
+                opacity: 0.7;
             }
             100% {
-                transform: translate(50px, 50px) scale(1);
-                opacity: 0.3;
+                transform: translate(40px, 40px) scale(1);
+                opacity: 0.4;
             }
         }
 
+        /* Fade-in animation remains the same */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -105,23 +106,23 @@
                 opacity: 1;
             }
         }
-    
+
         h2, h3, h4 {
             color: #0077cc;
             margin-bottom: 15px;
         }
-    
+
         p, ul {
             font-size: 1rem;
             line-height: 1.6;
             margin: 10px 0;
         }
-    
+
         ul {
             padding-left: 20px;
             text-align: left;
         }
-    
+
         .verses-box {
             margin-bottom: 20px;
             padding: 15px;
@@ -133,7 +134,7 @@
             text-align: left;
             color: #555;
         }
-    
+
         .content-box {
             margin-top: 20px;
             padding: 15px;
@@ -141,12 +142,37 @@
             background: #f0fcf4;
             border: 1px solid #c0eac8;
             text-align: left;
+
+            display: flex; /* Added for image positioning */
+            flex-direction: row; /* Added */
+            align-items: center; /* Added */
         }
-    
+
         .content-box h4 {
             color: #2f855a;
         }
-    
+
+        .content-box .content-text {
+            flex: 1; /* Allow content text to take up remaining space */
+        }
+
+        .content-box .content-image {
+            width: 250px; /* Your hardcoded width */
+            height: 100%; /* Adjust as per your previous settings */
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Remove margin-left here since it's now on .image-container */
+            margin-left: 0;
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            /* Adjust the alignment as needed */
+            margin-left: 15px; /* To maintain spacing between text and image */
+        }        
+
         .discussion-box {
             margin-top: 20px;
             padding: 15px;
@@ -155,7 +181,7 @@
             border: 1px solid #0077cc;
             text-align: left;
         }
-    
+
         .readonly-box {
             margin-top: 20px;
             padding: 15px;
@@ -164,12 +190,12 @@
             border: 1px solid #0077cc;
             text-align: left;
         }
-    
+
         .readonly-box h5 {
             color: #0077cc;
             font-weight: bold;
         }
-    
+
         textarea {
             width: 100%;
             margin-top: 10px;
@@ -181,13 +207,13 @@
             min-height: 80px;
             box-sizing: border-box;
         }
-    
+
         .answer {
             font-style: italic;
             color: #555;
             margin: 10px 0;
         }
-    
+
         .controls {
             display: flex;
             justify-content: space-between;
@@ -198,7 +224,7 @@
             position: relative;
             box-sizing: border-box;
         }
-    
+
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -207,43 +233,55 @@
             cursor: pointer;
             transition: background 0.3s ease-in-out;
         }
-    
+
         button:disabled {
             background: #ccc;
             color: #666;
             cursor: not-allowed;
             opacity: 0.6;
         }
-    
+
         #prev {
             background: #ff6b6b;
             color: white;
         }
-    
+
         #prev:hover:not(:disabled) {
             background: #ff3b3b;
         }
-    
+
         #next {
             background: #0077cc;
             color: white;
         }
-    
+
         #next:hover:not(:disabled) {
             background: #005fa3;
         }
-    
+
         /* Media Query for Small Screens (Mobile) */
         @media (max-width: 768px) {
             .slide.first-slide {
                 padding: 20px; /* Reduce padding for mobile */
             }
-    
+
+            .content-box {
+                flex-direction: column; /* Stack content and image on mobile */
+            }
+
+            .content-box .content-image {
+                height: auto;
+                width: 100%;
+                margin-left: 0;
+                margin-top: 15px;
+            }
+
             button {
                 font-size: 14px;
                 padding: 8px 16px;
             }
         }
+
     </style>
                            
 </head>
@@ -278,16 +316,22 @@
                 <p>18 how they told you that there would be mockers in the last time who would walk according to their own ungodly lusts.</p>
                 <p>19 These are sensual persons, who cause divisions, not having the Spirit.</p>
             </div>
-            <div class="content-box">
-                <h4>Key Verse</h4>
-                <p>“Remember the words spoken by the apostles.”</p>
-                <h4>Main Points</h4>
-                <ul>
-                    <li>Mockers were predicted, following ungodly desires.</li>
-                    <li>Characteristics: self-centered, divisive, devoid of the Spirit.</li>
-                </ul>
-                <h4>Application</h4>
-                <p>Be vigilant and grounded in Scripture.</p>
+                <div class="content-box">
+                    <div class="content-text">
+                    <h4>Key Verse</h4>
+                    <p>“Remember the words spoken by the apostles.”</p>
+                    <h4>Main Points</h4>
+                    <ul>
+                        <li>Mockers were predicted, following ungodly desires.</li>
+                        <li>Characteristics: self-centered, divisive, devoid of the Spirit.</li>
+                    </ul>
+                    <h4>Application</h4>
+                    <p>Be vigilant and grounded in Scripture.</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/remember-apostolic-warnings.png" alt="Remember Apostolic Warnings" class="content-image">
+                    <div class="glow-overlay"></div>
+                </div>                
             </div>
             <div class="discussion-box">
                 <h4>Discussion Questions</h4>
@@ -322,17 +366,23 @@
                 <p>21 keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.</p>
             </div>
             <div class="content-box">
-                <h4>Key Verses</h4>
-                <p>“Build yourselves up… praying in the Holy Spirit.”</p>
-                <h4>Main Points</h4>
-                <ul>
-                    <li>Build faith through Scripture, prayer, and fellowship.</li>
-                    <li>Pray in alignment with the Holy Spirit.</li>
-                    <li>Keep yourselves in God’s love through obedience.</li>
-                    <li>Look for Christ’s mercy and eternal hope.</li>
-                </ul>
-                <h4>Application</h4>
-                <p>Actively grow in faith and live with eternity in mind.</p>
+                <div class="content-text">
+                    <h4>Key Verses</h4>
+                    <p>“Build yourselves up… praying in the Holy Spirit.”</p>
+                    <h4>Main Points</h4>
+                    <ul>
+                        <li>Build faith through Scripture, prayer, and fellowship.</li>
+                        <li>Pray in alignment with the Holy Spirit.</li>
+                        <li>Keep yourselves in God’s love through obedience.</li>
+                        <li>Look for Christ’s mercy and eternal hope.</li>
+                    </ul>
+                    <h4>Application</h4>
+                    <p>Actively grow in faith and live with eternity in mind.</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/build-and-keep-your-faith.png" alt="Build and Keep Your Faith" class="content-image">
+                    <div class="glow-overlay"></div>
+                </div>                                
             </div>
             <div class="discussion-box">
                 <h4>Discussion Questions</h4>
@@ -367,16 +417,22 @@
                 <p>23 but others save with fear, pulling them out of the fire, hating even the garment defiled by the flesh.</p>
             </div>
             <div class="content-box">
-                <h4>Key Verses</h4>
-                <p>“Have compassion… save others, pulling them out of the fire.”</p>
-                <h4>Main Points</h4>
-                <ul>
-                    <li>Show compassion to those doubting.</li>
-                    <li>Rescue others urgently from sin.</li>
-                    <li>Avoid being influenced by their sin.</li>
-                </ul>
-                <h4>Application</h4>
-                <p>Balance compassion with caution while helping others.</p>
+                <div class="content-text">
+                    <h4>Key Verses</h4>
+                    <p>“Have compassion… save others, pulling them out of the fire.”</p>
+                    <h4>Main Points</h4>
+                    <ul>
+                        <li>Show compassion to those doubting.</li>
+                        <li>Rescue others urgently from sin.</li>
+                        <li>Avoid being influenced by their sin.</li>
+                    </ul>
+                    <h4>Application</h4>
+                    <p>Balance compassion with caution while helping others.</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/reach-out-to-others.png" alt="Reach out to others" class="content-image">
+                    <div class="glow-overlay"></div>
+                </div>                                                
             </div>
             <div class="discussion-box">
                 <h4>Discussion Questions</h4>
@@ -412,16 +468,22 @@
                 <p>25 To God our Savior, Who alone is wise, Be glory and majesty, Dominion and power, Both now and forever. Amen.</p>
             </div>
             <div class="content-box">
-                <h4>Key Verses</h4>
-                <p>“Now to Him who is able to keep you from stumbling.”</p>
-                <h4>Main Points</h4>
-                <ul>
-                    <li>God sustains and preserves believers.</li>
-                    <li>Believers are presented faultless through Christ.</li>
-                    <li>All glory, majesty, and dominion belong to God.</li>
-                </ul>
-                <h4>Application</h4>
-                <p>Rest in God’s ability to help you finish strong and praise Him.</p>
+                <div class="content-text">
+                    <h4>Key Verses</h4>
+                    <p>“Now to Him who is able to keep you from stumbling.”</p>
+                    <h4>Main Points</h4>
+                    <ul>
+                        <li>God sustains and preserves believers.</li>
+                        <li>Believers are presented faultless through Christ.</li>
+                        <li>All glory, majesty, and dominion belong to God.</li>
+                    </ul>
+                    <h4>Application</h4>
+                    <p>Rest in God’s ability to help you finish strong and praise Him.</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/trust-in-gods-power.png" alt="Trust in God's Power" class="content-image">
+                    <div class="glow-overlay"></div>
+                </div>                                                                
             </div>
             <div class="discussion-box">
                 <h4>Discussion Questions</h4>
@@ -452,16 +514,22 @@
         <div class="slide">
             <h3>Summary and Application</h3>
             <div class="content-box">
-                <h4>Summary</h4>
-                <ul>
-                    <li>Jude urges us to reject false teachings, grow in faith, help others, and trust God.</li>
-                    <li>Key actions: Stay vigilant, persevere, and encourage others.</li>
-                </ul>
-                <h4>Application</h4>
-                <ul>
-                    <li>Live your faith daily through Scripture, prayer, and action.</li>
-                    <li>Support others with compassion and urgency in their spiritual walk.</li>
-                </ul>
+                <div class="content-text">
+                    <h4>Summary</h4>
+                    <ul>
+                        <li>Jude urges us to reject false teachings, grow in faith, help others, and trust God.</li>
+                        <li>Key actions: Stay vigilant, persevere, and encourage others.</li>
+                    </ul>
+                    <h4>Application</h4>
+                    <ul>
+                        <li>Live your faith daily through Scripture, prayer, and action.</li>
+                        <li>Support others with compassion and urgency in their spiritual walk.</li>
+                    </ul>
+                </div>
+                <div class="image-container">
+                    <img src="images/summary-and-application.png" alt="Summary and Application" class="content-image">
+                    <div class="glow-overlay"></div>
+                </div>                   
             </div>
             <div class="discussion-box">
                 <h4>Conclusion</h4>
@@ -708,7 +776,7 @@
         function updateButtons() {
             prevButton.disabled = currentSlide === 0;
             nextButton.disabled = currentSlide === slides.length - 1;
-        }
+        }   
     
         // Ensure page always starts at the top on load
         window.addEventListener('DOMContentLoaded', () => {
@@ -716,7 +784,7 @@
             slides[currentSlide].classList.add('active');
             scrollToTop();
         });
-    </script>
+    </script>    
     
 </body>
 </html>
